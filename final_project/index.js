@@ -16,7 +16,7 @@ app.use("/customer/auth/*", function auth(req,res,next){
         jwt.verify(token, "access",(err,user)=>{
             if(!err){
                 req.user = user;
-                log.info("User authenticated");
+                console.log.info("User authenticated");
                 next();
             }
             else{
