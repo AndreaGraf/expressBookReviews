@@ -5,15 +5,24 @@ let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
 
-public_users.post("/register", (req,res) => {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
+
 
 // Get the book list available in the shop
   public_users.get('/',function (req, res) {
   res.send(JSON.stringify(books))
 });
+
+public_users.get('/books',function (req, res) {
+
+  const fetch_books = new Promise((resolve, reject) => {
+      resolve(res.send(JSON.stringify({books}, null, 4)));
+    });
+
+    fetch_books.then(() => console.log("all books retrieved"));
+
+});
+
+
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
